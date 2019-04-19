@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Le jQuery</title>
+<meta charset='utf-8'>
+<style>
+
+</style>
+</head>
+<body>
+<h1>Manipulation du DOM HTML</h1>
+<p class='toWrap'>Premier paragraphe</p> 
+<p class='toWrap'>Deuxième paragraphe</p>
+
+<p class='toWrapAll'>Troisième paragraphe</p>
+<p class='toWrapAll'>Quatrième paragraphe</p>
+
+<p class='toWrapInner'>Cinquième paragraphe</p>
+<p class='toWrapInner'>Sixième paragraphe</p>
+
+<script src='jquery-3.3.1.js'></script>
+<script>
+$(document).ready(function(){
+$('.toWrap').wrap("<div class='wrap'> </div>)
+$('.toWrapAll').wrapAll("<>")
+});
+
+$('#b2').click(function(){
+$('<h2>Autre titre h2 </h2>').replaceAll('#p2');
+});
+
+});
+</script>
+</body>
+</html>
