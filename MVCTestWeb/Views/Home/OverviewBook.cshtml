@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Livre>
+
+@{
+    ViewBag.Title = "OverviewBook";
+}
+
+<h2>OverviewBook</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table id="tableOverviewBook" class="table table-hover table-responsive table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LivreID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LivreName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateParution)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajaxSetup({ cache: false });
+        GetDataTableContact('@Url.Action("GetOverviewBook", "Home")');
+    });
+
+    function GetDataTableContact(url) {
+        $('#tableOverviewBook')
+            .DataTable({
+                processing: false,
+                serverSide: true,
+                ajax: {
+                    "type": "POST",
+                    "url": url,
+                    "error": function (reason) {
+                        alert(reason);
+                    }
+                },
+                autoWidth: true,
+                pageLength: 10,
+                searching: true,
+                ordering: true,
+                bInfo: true,
+                pagingType: "full_numbers",
+                sPaginationType: "bootstrap",
+                order: [0, "desc"]
+            });
+
+        $('#tableOverviewUser_filter input').unbind();
+        $('#tableOverviewUser_filter input').attr('placeholder', 'Search + [ENTER]');
+        $('#tableOverviewUser_filter input').bind('keyup', function (e) {
+            if (e.keyCode === 13) {
+                var table = $('#tableOverviewUser').DataTable();
+                table.search(this.value);
+                table.ajax.reload();
+            }
+        });
+
+        $(".dataTables_paginate").parent().addClass("align-right");
+        $(".dataTables_paginate").removeClass("dataTables_paginate");
+    }
+</script>

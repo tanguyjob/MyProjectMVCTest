@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DataBaseFirstDemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Livre">
+          <Key>
+            <PropertyRef Name="LivreID" />
+          </Key>
+          <Property Name="LivreID" Type="int" Nullable="false" />
+          <Property Name="LivreName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateParution" Type="date" />
+        </EntityType>
+        <EntityType Name="LivreUtilisateur">
+          <Key>
+            <PropertyRef Name="LivreUtilisateurID" />
+          </Key>
+          <Property Name="LivreUtilisateurID" Type="int" Nullable="false" />
+          <Property Name="LivreID" Type="int" Nullable="false" />
+          <Property Name="UtilisateurID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="int" Nullable="false" />
+          <Property Name="DatePublished" Type="smalldatetime" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="5000" Nullable="false" />
+          <Property Name="Body" Type="varchar" MaxLength="8000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="UtilisateurID" />
+          </Key>
+          <Property Name="UtilisateurID" Type="int" Nullable="false" />
+          <Property Name="UtilisateurName" Type="varchar" MaxLength="50" />
+          <Property Name="Utilisateurfirstname" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="GetAllLivre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllUtilisateurs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetPostFromId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PostId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="DataBaseFirstDemoModelStoreContainer">
+          <EntitySet Name="Livre" EntityType="Self.Livre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LivreUtilisateur" EntityType="Self.LivreUtilisateur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DataBaseFirstDemoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Livre">
+          <Key>
+            <PropertyRef Name="LivreID" />
+          </Key>
+          <Property Name="LivreID" Type="Int32" Nullable="false" />
+          <Property Name="LivreName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateParution" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="LivreUtilisateur">
+          <Key>
+            <PropertyRef Name="LivreUtilisateurID" />
+          </Key>
+          <Property Name="LivreUtilisateurID" Type="Int32" Nullable="false" />
+          <Property Name="LivreID" Type="Int32" Nullable="false" />
+          <Property Name="UtilisateurID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="Int32" Nullable="false" />
+          <Property Name="DatePublished" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Title" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Body" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="UtilisateurID" />
+          </Key>
+          <Property Name="UtilisateurID" Type="Int32" Nullable="false" />
+          <Property Name="UtilisateurName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Utilisateurfirstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="DataBaseFirstDemoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Livre" EntityType="Self.Livre" />
+          <EntitySet Name="LivreUtilisateur" EntityType="Self.LivreUtilisateur" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" />
+          <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" />
+          <FunctionImport Name="GetAllLivre" ReturnType="Collection(DataBaseFirstDemoModel.GetAllLivre_Result)" />
+          <FunctionImport Name="GetAllUtilisateurs" ReturnType="Collection(DataBaseFirstDemoModel.GetAllUtilisateurs_Result)" />
+          <FunctionImport Name="GetPostFromId" ReturnType="Collection(DataBaseFirstDemoModel.GetPostFromId_Result)">
+            <Parameter Name="PostId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetAllLivre_Result">
+          <Property Type="Int32" Name="LivreID" Nullable="false" />
+          <Property Type="String" Name="LivreName" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="DateParution" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetAllUtilisateurs_Result">
+          <Property Type="Int32" Name="UtilisateurID" Nullable="false" />
+          <Property Type="String" Name="UtilisateurName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Utilisateurfirstname" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetPostFromId_Result">
+          <Property Type="DateTime" Name="DatePublished" Nullable="false" Precision="16" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="5000" />
+          <Property Type="String" Name="Body" Nullable="false" MaxLength="8000" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DataBaseFirstDemoModelStoreContainer" CdmEntityContainer="DataBaseFirstDemoEntities">
+          <EntitySetMapping Name="Livre">
+            <EntityTypeMapping TypeName="DataBaseFirstDemoModel.Livre">
+              <MappingFragment StoreEntitySet="Livre">
+                <ScalarProperty Name="LivreID" ColumnName="LivreID" />
+                <ScalarProperty Name="LivreName" ColumnName="LivreName" />
+                <ScalarProperty Name="DateParution" ColumnName="DateParution" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LivreUtilisateur">
+            <EntityTypeMapping TypeName="DataBaseFirstDemoModel.LivreUtilisateur">
+              <MappingFragment StoreEntitySet="LivreUtilisateur">
+                <ScalarProperty Name="LivreUtilisateurID" ColumnName="LivreUtilisateurID" />
+                <ScalarProperty Name="LivreID" ColumnName="LivreID" />
+                <ScalarProperty Name="UtilisateurID" ColumnName="UtilisateurID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="DataBaseFirstDemoModel.Posts">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="DatePublished" ColumnName="DatePublished" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utilisateur">
+            <EntityTypeMapping TypeName="DataBaseFirstDemoModel.Utilisateur">
+              <MappingFragment StoreEntitySet="Utilisateur">
+                <ScalarProperty Name="UtilisateurID" ColumnName="UtilisateurID" />
+                <ScalarProperty Name="UtilisateurName" ColumnName="UtilisateurName" />
+                <ScalarProperty Name="Utilisateurfirstname" ColumnName="Utilisateurfirstname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetAllLivre" FunctionName="DataBaseFirstDemoModel.Store.GetAllLivre">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DataBaseFirstDemoModel.GetAllLivre_Result">
+                <ScalarProperty Name="LivreID" ColumnName="LivreID" />
+                <ScalarProperty Name="LivreName" ColumnName="LivreName" />
+                <ScalarProperty Name="DateParution" ColumnName="DateParution" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllUtilisateurs" FunctionName="DataBaseFirstDemoModel.Store.GetAllUtilisateurs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DataBaseFirstDemoModel.GetAllUtilisateurs_Result">
+                <ScalarProperty Name="UtilisateurID" ColumnName="UtilisateurID" />
+                <ScalarProperty Name="UtilisateurName" ColumnName="UtilisateurName" />
+                <ScalarProperty Name="Utilisateurfirstname" ColumnName="Utilisateurfirstname" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetPostFromId" FunctionName="DataBaseFirstDemoModel.Store.GetPostFromId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DataBaseFirstDemoModel.GetPostFromId_Result">
+                <ScalarProperty Name="DatePublished" ColumnName="DatePublished" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

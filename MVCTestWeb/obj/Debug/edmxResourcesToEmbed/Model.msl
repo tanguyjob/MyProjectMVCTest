@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DataBaseFirstDemoModelStoreContainer" CdmEntityContainer="DataBaseFirstDemoEntities">
+    <EntitySetMapping Name="Livre">
+      <EntityTypeMapping TypeName="DataBaseFirstDemoModel.Livre">
+        <MappingFragment StoreEntitySet="Livre">
+          <ScalarProperty Name="LivreID" ColumnName="LivreID" />
+          <ScalarProperty Name="LivreName" ColumnName="LivreName" />
+          <ScalarProperty Name="DateParution" ColumnName="DateParution" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LivreUtilisateur">
+      <EntityTypeMapping TypeName="DataBaseFirstDemoModel.LivreUtilisateur">
+        <MappingFragment StoreEntitySet="LivreUtilisateur">
+          <ScalarProperty Name="LivreUtilisateurID" ColumnName="LivreUtilisateurID" />
+          <ScalarProperty Name="LivreID" ColumnName="LivreID" />
+          <ScalarProperty Name="UtilisateurID" ColumnName="UtilisateurID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Posts">
+      <EntityTypeMapping TypeName="DataBaseFirstDemoModel.Posts">
+        <MappingFragment StoreEntitySet="Posts">
+          <ScalarProperty Name="PostID" ColumnName="PostID" />
+          <ScalarProperty Name="DatePublished" ColumnName="DatePublished" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Utilisateur">
+      <EntityTypeMapping TypeName="DataBaseFirstDemoModel.Utilisateur">
+        <MappingFragment StoreEntitySet="Utilisateur">
+          <ScalarProperty Name="UtilisateurID" ColumnName="UtilisateurID" />
+          <ScalarProperty Name="UtilisateurName" ColumnName="UtilisateurName" />
+          <ScalarProperty Name="Utilisateurfirstname" ColumnName="Utilisateurfirstname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetAllLivre" FunctionName="DataBaseFirstDemoModel.Store.GetAllLivre">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DataBaseFirstDemoModel.GetAllLivre_Result">
+          <ScalarProperty Name="LivreID" ColumnName="LivreID" />
+          <ScalarProperty Name="LivreName" ColumnName="LivreName" />
+          <ScalarProperty Name="DateParution" ColumnName="DateParution" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetAllUtilisateurs" FunctionName="DataBaseFirstDemoModel.Store.GetAllUtilisateurs">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DataBaseFirstDemoModel.GetAllUtilisateurs_Result">
+          <ScalarProperty Name="UtilisateurID" ColumnName="UtilisateurID" />
+          <ScalarProperty Name="UtilisateurName" ColumnName="UtilisateurName" />
+          <ScalarProperty Name="Utilisateurfirstname" ColumnName="Utilisateurfirstname" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetPostFromId" FunctionName="DataBaseFirstDemoModel.Store.GetPostFromId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DataBaseFirstDemoModel.GetPostFromId_Result">
+          <ScalarProperty Name="DatePublished" ColumnName="DatePublished" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

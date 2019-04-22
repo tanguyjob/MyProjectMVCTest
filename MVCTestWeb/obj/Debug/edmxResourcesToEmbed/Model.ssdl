@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DataBaseFirstDemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Livre">
+    <Key>
+      <PropertyRef Name="LivreID" />
+    </Key>
+    <Property Name="LivreID" Type="int" Nullable="false" />
+    <Property Name="LivreName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateParution" Type="date" />
+  </EntityType>
+  <EntityType Name="LivreUtilisateur">
+    <Key>
+      <PropertyRef Name="LivreUtilisateurID" />
+    </Key>
+    <Property Name="LivreUtilisateurID" Type="int" Nullable="false" />
+    <Property Name="LivreID" Type="int" Nullable="false" />
+    <Property Name="UtilisateurID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Posts">
+    <Key>
+      <PropertyRef Name="PostID" />
+    </Key>
+    <Property Name="PostID" Type="int" Nullable="false" />
+    <Property Name="DatePublished" Type="smalldatetime" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="5000" Nullable="false" />
+    <Property Name="Body" Type="varchar" MaxLength="8000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Utilisateur">
+    <Key>
+      <PropertyRef Name="UtilisateurID" />
+    </Key>
+    <Property Name="UtilisateurID" Type="int" Nullable="false" />
+    <Property Name="UtilisateurName" Type="varchar" MaxLength="50" />
+    <Property Name="Utilisateurfirstname" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Function Name="GetAllLivre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetAllUtilisateurs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetPostFromId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PostId" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="DataBaseFirstDemoModelStoreContainer">
+    <EntitySet Name="Livre" EntityType="Self.Livre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LivreUtilisateur" EntityType="Self.LivreUtilisateur" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
